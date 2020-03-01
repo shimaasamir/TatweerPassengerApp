@@ -1,67 +1,79 @@
-import * as React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { SplashScreen } from 'expo';
-import * as Font from 'expo-font';
-import { Ionicons } from '@expo/vector-icons';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
+import { StyleSheet, Text, KeyboardAvoidingView, View, ImageBackground, TextInput, Button } from 'react-native';
+import PasswordField from 'react-native-password-field';
 
-import BottomTabNavigator from './navigation/BottomTabNavigator';
-import useLinking from './navigation/useLinking';
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <ImageBackground
+        source={require('./assets/97635_coaster-banner.png')}
+        style={styles.image}>
+      </ImageBackground>
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+        <View style={styles.box}>
+          <ImageBackground
+            source={require('./assets/454.jpg')}
+            style={styles.logo2}>
+          </ImageBackground>
 
-const Stack = createStackNavigator();
+          <View>
+            <Text style={styles.text}>Your Email</Text>
+            <TextInput keyboardType="email-address" style={styles.input} />
+            <Text style={styles.text}>Your Password</Text>
+            <TextInput style={styles.input} />
 
-export default function App(props) {
-  const [isLoadingComplete, setLoadingComplete] = React.useState(false);
-  const [initialNavigationState, setInitialNavigationState] = React.useState();
-  const containerRef = React.useRef();
-  const { getInitialState } = useLinking(containerRef);
+          </View>
 
-  // Load any resources or data that we need prior to rendering the app
-  React.useEffect(() => {
-    async function loadResourcesAndDataAsync() {
-      try {
-        SplashScreen.preventAutoHide();
-
-        // Load our initial navigation state
-        setInitialNavigationState(await getInitialState());
-
-        // Load fonts
-        await Font.loadAsync({
-          ...Ionicons.font,
-          'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
-        });
-      } catch (e) {
-        // We might want to provide this error information to an error reporting service
-        console.warn(e);
-      } finally {
-        setLoadingComplete(true);
-        SplashScreen.hide();
-      }
-    }
-
-    loadResourcesAndDataAsync();
-  }, []);
-
-  if (!isLoadingComplete && !props.skipLoadingScreen) {
-    return null;
-  } else {
-    return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
-          <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>
-    );
-  }
+          <View style={styles.button} color='white'>
+            <Button color="#fff" title='Sign in to your account' />
+          </View>
+        </View>
+      </KeyboardAvoidingView>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+
   },
+  image: {
+    width: 375,
+    height: 250,
+    marginTop: 30,
+  },
+  box: {
+    flex: 1,
+    borderRadius: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logo2: {
+    width: 119,
+    height: 80,
+    margin: 10,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: 'black',
+    padding: 8,
+    margin: 10,
+    width: 230,
+    marginBottom: 40
+  },
+  text: {
+    fontSize: 16,
+    marginRight: 120,
+  },
+  button: {
+    width: 231,
+    height: 37,
+    backgroundColor: '#de282e',
+    borderRadius: 10
+
+  }
+
+
 });
