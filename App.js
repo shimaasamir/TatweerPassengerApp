@@ -1,79 +1,32 @@
-import React from 'react';
-import { StyleSheet, Text, KeyboardAvoidingView, View, ImageBackground, TextInput, Button } from 'react-native';
-import PasswordField from 'react-native-password-field';
+import React, {useState} from 'react';
+import AllTrips from './screens/AllTrips';
+import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
+import Navigator from './routes/homeStack';
+
+const getFonts = () =>  Font.loadAsync({
+    'lato-regular': require('./assets/fonts/Lato-Regular.ttf'),
+    'opensans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+    'lato-bold': require('./assets/fonts/Lato-Bold.ttf'),
+    'lato-light': require('./assets/fonts/Lato-Light.ttf'),
+    'opensans-regular': require('./assets/fonts/OpenSans-Regular.ttf'),
+  });
+
 
 export default function App() {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  if (fontsLoaded){
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={require('./assets/97635_coaster-banner.png')}
-        style={styles.image}>
-      </ImageBackground>
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
-        <View style={styles.box}>
-          <ImageBackground
-            source={require('./assets/454.jpg')}
-            style={styles.logo2}>
-          </ImageBackground>
-
-          <View>
-            <Text style={styles.text}>Your Email</Text>
-            <TextInput keyboardType="email-address" style={styles.input} />
-            <Text style={styles.text}>Your Password</Text>
-            <TextInput style={styles.input} />
-
-          </View>
-
-          <View style={styles.button} color='white'>
-            <Button color="#fff" title='Sign in to your account' />
-          </View>
-        </View>
-      </KeyboardAvoidingView>
-    </View>
+    <Navigator/>
   );
+} else {
+   return (
+    <AppLoading
+    startAsync={getFonts}
+    onFinish={() => setFontsLoaded(true)}
+    />
+   )
+}
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-
-  },
-  image: {
-    width: 375,
-    height: 250,
-    marginTop: 30,
-  },
-  box: {
-    flex: 1,
-    borderRadius: 80,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logo2: {
-    width: 119,
-    height: 80,
-    margin: 10,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: 'black',
-    padding: 8,
-    margin: 10,
-    width: 230,
-    marginBottom: 40
-  },
-  text: {
-    fontSize: 16,
-    marginRight: 120,
-  },
-  button: {
-    width: 231,
-    height: 37,
-    backgroundColor: '#de282e',
-    borderRadius: 10
-
-  }
-
-
-});
