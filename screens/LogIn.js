@@ -2,15 +2,15 @@ import React from 'react';
 import { StyleSheet, Text, KeyboardAvoidingView, View, ImageBackground, TextInput, Button } from 'react-native';
 import PasswordField from 'react-native-password-field';
 
-export default function LogIn({navigation}) {
+export default function LogIn({ navigation }) {
 
-    const pressHandler = () => {
-       // navigation.navigate('AllTrips');
-       navigation.push('AllTrips');
-    }
+  const pressHandler = () => {
+    // navigation.navigate('AllTrips');
+    navigation.push('AllTrips');
+  }
 
   return (
-      
+
     <View style={styles.container}>
       <ImageBackground
         source={require('../assets/97635_coaster-banner.png')}
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   image: {
     width: 375,
     height: 250,
-    
+
   },
   box: {
     flex: 1,
@@ -75,8 +75,8 @@ const styles = StyleSheet.create({
     marginRight: 120,
   },
   button: {
-    width: 231,
-    height: 37,
+    width: 230,
+    height: 40,
     backgroundColor: '#de282e',
     borderRadius: 10
 

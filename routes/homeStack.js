@@ -1,6 +1,6 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
-import AllTrips from '../screens/AllTrips'; 
+import AllTrips from '../screens//AllTrips/AllTrips';
 import MyTrips from '../screens/MyTrips';
 import LogIn from '../screens/LogIn';
 
