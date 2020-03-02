@@ -13,7 +13,7 @@ export default function TripItem(props) {
                 <Text style={styles.route1}>
                     <Ionicons name="md-checkmark-circle" size={14} color="#232323" />
                     {props.startPoint}</Text>
-                <Text style={styles.text}>Today</Text>
+                <Text style={styles.text}>Today date</Text>
                 <Text style={styles.text}>Starting Time</Text>
                 <Text style={styles.text}>{props.routeName}</Text>
                 <Text style={styles.text}>Trip ID</Text>
