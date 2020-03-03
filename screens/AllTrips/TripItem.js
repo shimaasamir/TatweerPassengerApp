@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Button, FlatList, DatePickerIOS, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, Button, FlatList, TouchableOpacity } from 'react-native';
 import { Ionicons } from 'react-native-vector-icons';
 
 
 
 
-export default function TripItem(props) {
+export default function TripItem(props, { navigation }) {
+
+    const pressHandler = () => {
+        navigation.push('Join');
+    }
+
     return (
 
         <View>
             <View style={styles.one}>
-                <Text style={styles.route1}>
-                    <Ionicons name="md-checkmark-circle" size={14} color="#232323" />
+                <Text style={styles.route}>
+                    <Ionicons name="md-checkmark-circle-outline" size={14} color="#232323" />
                     {props.startPoint}</Text>
                 <Text style={styles.text}>Today</Text>
                 <Text style={styles.text}>Starting Time</Text>
                 <Text style={styles.text}>{props.routeName}</Text>
                 <Text style={styles.text}>Trip ID</Text>
                 <Text style={styles.route}>
-                    <Ionicons name="md-checkmark-circle-outline" size={14} color="#232323" />
-                    Finshing Point (Address Format)</Text>
+                    <Ionicons name="md-checkmark-circle" size={14} color="#232323" />
+                    {props.finishPoint}</Text>
             </View>
             <View style={styles.time}>
                 <View style={styles.box}>
@@ -32,7 +37,7 @@ export default function TripItem(props) {
                     <Text style={styles.num}>00</Text>
                 </View>
                 <View style={styles.btn} >
-                    <Button title="Request" color='#fff' />
+                    <Button onPress={props.onPress} title="Request" color='#fff' />
                 </View>
             </View>
             <View style={styles.time}>
@@ -61,7 +66,7 @@ const styles = StyleSheet.create({
         fontFamily: 'lato-light',
         fontSize: 10,
         color: '#606060',
-        marginLeft: 150
+        marginLeft: 230
     },
     route1: {
         fontFamily: 'lato-light',
@@ -100,9 +105,10 @@ const styles = StyleSheet.create({
     btn: {
         backgroundColor: '#e61610',
         borderRadius: 10,
-        width: 100,
+        width: 120,
         justifyContent: 'center',
-        marginLeft: 50,
+        marginLeft: 90,
+        marginTop: 10
 
     }
 

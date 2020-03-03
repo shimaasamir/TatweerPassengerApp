@@ -1,33 +1,46 @@
 import React, { useState } from 'react';
-import { StyleSheet, FlatList, View } from 'react-native';
+import { StyleSheet, View, Text, Button, FlatList } from 'react-native';
+import { Ionicons } from 'react-native-vector-icons';
 import TripItem from './TripItem';
 
 
 
 
-export default function Sandbox() {
+export default function Sandbox(props) {
+
     const [trips, setTrips] = useState([
         {
             id: '1',
-            startPoint: "start Pointe Haram",
-            routeName: "haram - october"
+            startPoint: "start Point Haram",
+            routeName: "Haram - October",
+            finishPoint: "finish Point october",
         },
         {
             id: '2',
-            startPoint: "start Pointe Haram22",
-            routeName: "haram - october33"
+            startPoint: "start Point Haram22",
+            routeName: "Haram - October22",
+            finishPoint: "finish Point october22",
+        },
+        {
+            id: '3',
+            startPoint: "start Point Haram33",
+            routeName: "Haram - October33",
+            finishPoint: "finish Point october33",
         },
     ])
+
     return (
         <View style={styles.container}>
             <FlatList
-                data={trips}
-                renderItem={({ item }) =>
-                    (<TripItem routeName={item.routeName} startPoint={item.startPoint} />)
-                }
                 keyExtractor={item => item.id}
+                data={trips}
+                renderItem={({ item }) => (
+                    <TripItem onPress={props.onPress} routeName={item.routeName} startPoint={item.startPoint} finishPoint={item.finishPoint} />
+                )}
             />
         </View>
+
+
     )
 }
 
@@ -91,7 +104,7 @@ const styles = StyleSheet.create({
     btn: {
         backgroundColor: '#e61610',
         borderRadius: 10,
-        width: 100,
+        width: 120,
         justifyContent: 'center',
         marginLeft: 50,
 
